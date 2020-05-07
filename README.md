@@ -3,7 +3,7 @@
 
 1、依赖
 
-1) 在根部目录的 build.gradle添加maven仓库
+ 1). 在根部目录的 build.gradle添加maven仓库
 
 
 
@@ -17,7 +17,7 @@
                 
 	   }
 
-2) 在模块下方添加
+ 2). 在模块下方添加
 
        dependencies {
   
@@ -25,13 +25,13 @@
    
        }
   
-2、使用方式
+2.使用方式
 
-1). 选取系统相册图片
+ 1). 选取系统相册图片
 
     YUtils.startForPickGalleryPhotoVideo（Activity , BaseCallBack）
  
-2). 调用系统相册图片并裁剪
+ 2). 调用系统相册图片并裁剪
 
     ZoomConfig zoomConfig = new ZoomConfigBuilder().setAspectX(1)
                 .setAspectY(1)
@@ -41,11 +41,11 @@
 		
     YUtils.startForPickGalleryPhotoAndZoom(Activity, zoomConfig, BaseCallBack);
  
-3).调用系统相机拍照
+ 3).调用系统相机拍照
 
     YUtils.startForTakePhoto(Activity, BaseCallBack);
 
-4).调用系统相机录像
+ 4).调用系统相机录像
 
      YUtils.startTakeVideo(Activity,
                 new TakeVideoConfigBuilder()
