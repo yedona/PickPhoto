@@ -13,6 +13,7 @@ allprojects {
 	}
 
 2) 在模块下方添加
+
 dependencies {
 
 	        implementation 'com.github.yedona:PickPhoto:1.0'
@@ -25,17 +26,21 @@ dependencies {
  YUtils.startForPickGalleryPhotoVideo（Activity , BaseCallBack）
  
 2). 调用系统相册图片并裁剪
+
  ZoomConfig zoomConfig = new ZoomConfigBuilder().setAspectX(1)
                 .setAspectY(1)
                 .setOutputX(200)
                 .setOutputY(200)
                 .setOutputPath("/storage/emulated/0" + "/" + System.currentTimeMillis() + ".jpg").createZoomConfig();
+		
  YUtils.startForPickGalleryPhotoAndZoom(Activity, zoomConfig, BaseCallBack);
  
 3).调用系统相机拍照
+
   YUtils.startTakeVideo(Activity, BaseCallBack);
 
 4).调用系统相机录像
+
      YUtils.startTakeVideo(this,
                 new TakeVideoConfigBuilder()
                         .setLength(5)
