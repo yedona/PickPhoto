@@ -14,10 +14,10 @@ allprojects {
 
 2) 在模块下方添加
 
-dependencies {
+dependencies 
 
-	        implementation 'com.github.yedona:PickPhoto:1.0'
-	}
+implementation 'com.github.yedona:PickPhoto:1.0'
+	
   
 2、使用方式
 
@@ -37,7 +37,7 @@ dependencies {
  
 3).调用系统相机拍照
 
-  YUtils.startTakeVideo(Activity, BaseCallBack);
+  YUtils.startForTakePhoto(this, callBack);
 
 4).调用系统相机录像
 
