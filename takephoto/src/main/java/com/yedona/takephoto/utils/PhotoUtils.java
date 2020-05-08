@@ -81,7 +81,7 @@ public class PhotoUtils {
 
 
                         if (resultCode == Activity.RESULT_OK) {
-                            if (config.getZoomConfig() != null && config.getType() == TakeType.PICK_GALLERY_PHOTO) {
+                            if (config.getZoomConfig() != null && config.getType() == TakeType.TAKE_CAMERA_PHOTO) {
 
                                 PhotoZoomUtils.startForPhotoZoom(activity, config.getZoomConfig(), callBack, path);
                                 callBack.onSuccess(path);
