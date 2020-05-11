@@ -23,7 +23,7 @@ public class UriUtils {
     public static Uri getUriFromFile(Context context, String path) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
-            return FileProvider.getUriForFile(context.getApplicationContext(), "com.yedona.takephoto.provider", new File(path));
+            return FileProvider.getUriForFile(context.getApplicationContext(), context.getPackageName() + ".yedona.provider", new File(path));
         } else {
             return Uri.fromFile(new File(path));
         }

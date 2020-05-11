@@ -15,7 +15,7 @@
             android:name="com.yedona.takephoto.config.PickPhotoFileProvider"
             android:exported="false"
             android:grantUriPermissions="true"
-            android:authorities="com.yedona.takephoto.provider">
+            android:authorities="${applicationId}.yedona.provider">
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
