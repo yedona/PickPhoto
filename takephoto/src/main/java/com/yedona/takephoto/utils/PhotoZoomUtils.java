@@ -29,6 +29,8 @@ public class PhotoZoomUtils {
             File file = new File(config.getOutputPath());
             if (!file.exists()) {
                 try {
+                    file.getParentFile().mkdirs();
+
                     file.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -64,7 +66,7 @@ public class PhotoZoomUtils {
                         if (data == null || data.getData() == null) {
                             path = config.getOutputPath();
                         } else {
-                            path = UriUtils.getPath(context, data.getData());
+                            path = UriUtils.getRealFilePath(context, data.getData());
                         }
                         callBack.onZoomPhotoSuccess(finalOriginFilePath, path);
                     }

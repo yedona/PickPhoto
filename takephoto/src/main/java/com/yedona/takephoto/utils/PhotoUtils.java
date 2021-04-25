@@ -3,6 +3,7 @@ package com.yedona.takephoto.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
@@ -42,7 +43,7 @@ public class PhotoUtils {
                     public void onActivityResult(int resultCode, Intent data) {
                         if (resultCode == Activity.RESULT_OK) {
                             Uri uri = data.getData();
-                            String imgPath = UriUtils.getPath(activity, uri);
+                            String imgPath = UriUtils.getRealFilePath(activity, uri);
                             if (config.getZoomConfig() != null && config.getType() == TakeType.PICK_GALLERY_PHOTO) {
 
                                 PhotoZoomUtils.startForPhotoZoom(activity, config.getZoomConfig(), callBack, imgPath);
@@ -62,8 +63,9 @@ public class PhotoUtils {
     public static void startTake(final Activity activity, final Config config, final BaseCallBack callBack) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+        File file = activity.getExternalFilesDir(Environment.DIRECTORY_DCIM);
 
-        final String path = "/storage/emulated/0" + "/" + System.currentTimeMillis() + ".jpg";
+        final String path = file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".jpg";
         try {
             new File(path).createNewFile();
         } catch (IOException e) {
@@ -99,7 +101,8 @@ public class PhotoUtils {
 
 
         if (TextUtils.isEmpty(config.getVideoPath())) {
-            final String path = "/storage/emulated/0" + "/" + System.currentTimeMillis() + ".mp4";
+            File file = activity.getExternalFilesDir(Environment.DIRECTORY_DCIM);
+            final String path = file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".mp4";
             config.setVideoPath(path);
         }
 

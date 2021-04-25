@@ -1,6 +1,7 @@
 package com.yedona.pickphoto;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -64,11 +65,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pickPhotoEditConfig(View view) {
+
+        String outPutPath = getExternalFilesDir(Environment.DIRECTORY_DCIM).getAbsolutePath() + "/PickPhoto/" + System.currentTimeMillis() + ".jpg";
+
         ZoomConfig zoomConfig = new ZoomConfigBuilder().setAspectX(1)
                 .setAspectY(1)
                 .setOutputX(200)
                 .setOutputY(200)
-                .setOutputPath("/storage/emulated/0" + "/" + System.currentTimeMillis() + ".jpg").createZoomConfig();
+                .setOutputPath(outPutPath).createZoomConfig();
         YUtils.startForPickGalleryPhotoAndZoom(this, zoomConfig, callBack);
 
 
@@ -76,11 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void takePhotoEdit(View view) {
+        String outPutPath = getExternalFilesDir(Environment.DIRECTORY_DCIM).getAbsolutePath() + "/PickPhoto/" + System.currentTimeMillis() + ".jpg";
+
         ZoomConfig zoomConfig = new ZoomConfigBuilder().setAspectX(1)
                 .setAspectY(1)
                 .setOutputX(200)
                 .setOutputY(200)
-                .setOutputPath("/storage/emulated/0" + "/" + System.currentTimeMillis() + ".jpg").createZoomConfig();
+                .setOutputPath(outPutPath).createZoomConfig();
         YUtils.startForTakePhotoAndZoom(this, zoomConfig, callBack);
     }
 
@@ -89,11 +95,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void takeVideoConfig(View view) {
+        String outPutPath = getExternalFilesDir(Environment.DIRECTORY_DCIM).getAbsolutePath()
+                + "/PickPhoto/" + System.currentTimeMillis() + ".mp4";
+
         YUtils.startTakeVideo(this,
                 new TakeVideoConfigBuilder()
                         .setLength(5)
                         .setQuality(1)
-                        .setVideoPath("/storage/emulated/0" + "/" + System.currentTimeMillis() + ".mp4").createTakeVideoConfig(),
+                        .setVideoPath(outPutPath).createTakeVideoConfig(),
                 callBack);
 
     }
