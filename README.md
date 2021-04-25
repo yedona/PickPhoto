@@ -21,7 +21,7 @@
 
        dependencies {
   
-            implementation 'com.github.yedona:PickPhoto:1.0.0'
+            implementation 'com.github.yedona:PickPhoto:1.0.2'
    
        }
   
