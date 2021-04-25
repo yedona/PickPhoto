@@ -1,6 +1,15 @@
 # PickPhoto
 调用系统相册选择图片视频，调用系统相机拍照录像
 
+
+# 1.0.3
+修改targetSdkVersion为29
+
+修改Uri获取方式
+
+
+
+
 1、依赖
 
  1). 在根部目录的 build.gradle添加maven仓库
@@ -21,7 +30,7 @@
 
        dependencies {
   
-            implementation 'com.github.yedona:PickPhoto:1.0.2'
+            implementation 'com.github.yedona:PickPhoto:1.0.3'
    
        }
   
