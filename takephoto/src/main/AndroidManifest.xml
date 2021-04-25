@@ -11,17 +11,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
 
-        <provider
-            android:name="com.yedona.takephoto.config.PickPhotoFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:authorities="${applicationId}.yedona.provider">
-
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-
 
     </application>
 </manifest>

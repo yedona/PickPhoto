@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import com.blankj.utilcode.util.UriUtils;
 import com.yedona.takephoto.avoidresult.AvoidOnResult;
 import com.yedona.takephoto.callback.BaseCallBack;
 import com.yedona.takephoto.config.ZoomConfig;
@@ -44,7 +45,7 @@ public class PhotoZoomUtils {
         }
 
 
-        Uri uri = UriUtils.getUriFromFile(context, originFilePath);
+        Uri uri = UriUtils.file2Uri(new File(originFilePath));
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
@@ -66,7 +67,7 @@ public class PhotoZoomUtils {
                         if (data == null || data.getData() == null) {
                             path = config.getOutputPath();
                         } else {
-                            path = UriUtils.getRealFilePath(context, data.getData());
+                            path = UriUtils.uri2File(data.getData()).getAbsolutePath();
                         }
                         callBack.onZoomPhotoSuccess(finalOriginFilePath, path);
                     }

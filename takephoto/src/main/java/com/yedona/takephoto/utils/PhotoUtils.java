@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import com.blankj.utilcode.util.UriUtils;
 import com.yedona.takephoto.avoidresult.AvoidOnResult;
 import com.yedona.takephoto.callback.BaseCallBack;
 import com.yedona.takephoto.config.Config;
@@ -43,7 +44,7 @@ public class PhotoUtils {
                     public void onActivityResult(int resultCode, Intent data) {
                         if (resultCode == Activity.RESULT_OK) {
                             Uri uri = data.getData();
-                            String imgPath = UriUtils.getRealFilePath(activity, uri);
+                            String imgPath = UriUtils.uri2File(uri).getAbsolutePath();
                             if (config.getZoomConfig() != null && config.getType() == TakeType.PICK_GALLERY_PHOTO) {
 
                                 PhotoZoomUtils.startForPhotoZoom(activity, config.getZoomConfig(), callBack, imgPath);
@@ -72,7 +73,7 @@ public class PhotoUtils {
             e.printStackTrace();
         }
 
-        final Uri uri = UriUtils.getUriFromFile(activity, path);
+        final Uri uri = UriUtils.file2Uri(new File(path));
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -114,7 +115,7 @@ public class PhotoUtils {
                 e.printStackTrace();
             }
         }
-        Uri uri = UriUtils.getUriFromFile(activity, config.getVideoPath());
+        Uri uri = UriUtils.file2Uri(new File(config.getVideoPath()));
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, config.getQuality());
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);

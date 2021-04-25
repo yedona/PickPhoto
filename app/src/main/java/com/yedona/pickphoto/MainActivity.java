@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yedona.takephoto.callback.BaseCallBack;
@@ -14,6 +15,8 @@ import com.yedona.takephoto.config.ZoomConfig;
 import com.yedona.takephoto.config.ZoomConfigBuilder;
 import com.yedona.takephoto.utils.YUtils;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -21,29 +24,32 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSuccess(String path) {
             Log.d("yedona", "onSuccess: " + path);
-            Glide.with(MainActivity.this).load(path).into(iv);
+            Glide.with(MainActivity.this).load(new File(path)).into(iv);
+            tv.setText("file path : " + path);
         }
 
         @Override
         public void onFailure(int errCode) {
-
-
+            Log.d("yedona", "onFailure: " + errCode);
         }
 
         @Override
         public void onZoomPhotoSuccess(String path, String zoomPath) {
             super.onZoomPhotoSuccess(path, zoomPath);
+            tv.setText("file path : " + path);
             Log.d("yedona", "onZoomPhotoSuccess: " + path + "\n" + zoomPath);
             Glide.with(MainActivity.this).load(zoomPath).into(iv);
         }
     };
     private ImageView iv;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iv = ((ImageView) findViewById(R.id.iv));
+        tv = ((TextView) findViewById(R.id.tv));
 
     }
 
